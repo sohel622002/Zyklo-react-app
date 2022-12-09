@@ -1,0 +1,86 @@
+.Header{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 25px;
+    padding: 10px;
+    border-bottom: 1px solid ;
+    color: #810CA8;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: white;
+}
+
+.Header h4{
+    font-weight: 300;
+}
+.Header h5{
+    font-weight: 300;
+}
+
+.modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Signup_Page{
+    padding: 20px 10px;
+    max-width: 380px;
+    background-color: white;
+    margin: 0 10px;
+}
+.Signup_Page h4{
+    font-weight: 300;
+    font-size: 25px;
+    color: #810CA8;
+    text-align: center;
+}
+.Signup_Page input{
+    width: 100%;
+    font-size: 16px;
+    padding: 5px;
+    margin: 10px 0px;
+    border: none;
+    border-bottom: 1px solid #810CA8;
+}
+.Signup_Page button{
+    width: 100%;
+    font-size: 16px;
+    padding: 5px 0;
+}
+
+.navbtn{
+    padding: 5px 10px;
+    margin-left: 10px;
+    border: 1px solid #810CA8;
+    color: #810CA8;
+    border-radius: 5px;
+    background-color: white;
+    text-align: center;
+}
+.login_pera{
+    max-width: 380px;
+    margin-inline: auto;
+    text-align: center;
+    padding: 5px 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+@media (min-width:810px) {
+    .post_container{
+        width: 90%;
+        max-width: 850px;
+        margin-inline: auto;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+}
+

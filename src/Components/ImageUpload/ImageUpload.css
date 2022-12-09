@@ -1,0 +1,41 @@
+.Image_Upload_Container{
+    max-width: 380px;
+    padding: 0 0px;
+    margin: auto;
+    margin-bottom: 20px;
+    border: 1px solid lightgrey;
+    margin-top: 10px;
+}
+.Image_Upload_Container progress{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+.Image_Upload_Container input[type='file']{
+    width: 100%;
+    margin-bottom: 7px;
+}
+.caption_Btn{
+    width: 100%;
+    display: flex;
+}
+
+input[type="file"]::-webkit-file-upload-button{
+    padding: 5px 10px;
+    margin-left: 5px;
+}
+.caption_Btn input{
+    flex: 1;
+    padding: 0px 8px;
+    font-size: 15px;
+    border: none;
+    border-top: 1px solid lightgrey;
+
+}
+.caption_Btn button{
+    padding: 5px 10px;
+    background-color: white;
+    border: none;
+    border-top: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+}
