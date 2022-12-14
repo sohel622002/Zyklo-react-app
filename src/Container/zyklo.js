@@ -22,7 +22,6 @@ function Zyklo() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
@@ -40,19 +39,13 @@ function Zyklo() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCred) => {
 
-        // console.log(userCred + 'this is after user created')
-
         if (!userCred.user.displayName) {
           updateProfile(userCred.user, {
             displayName: username
           });
           console.log("updated")
         }
-
-        // console.log(userCred.user)
-
         setUser(userCred.user)
-        setLoading(false)
         setOpen(false)
         window.location.reload();
       })
@@ -68,22 +61,18 @@ function Zyklo() {
       .then((userCred) => {
         console.log('logedin')
 
-        if (!user?.displayName) {
-          updateProfile(userCred.user, {
-            displayName: username
-          });
-        }
-        // console.log(user?.displayName + 'from after signin')
-        // console.log(user)
+        // if (!user?.displayName) {
+        //   updateProfile(userCred.user, {
+        //     displayName: username
+        //   });
+        // }
         setUser(userCred.user);
-        setLoading(false)
         setSignInOpen(false);
       })
       .catch((error) => {
         alert(error.message)
       })
   }
-
 
 
   useEffect(() => {
@@ -138,8 +127,6 @@ function Zyklo() {
           )}
         </div>
       </div>
-
-      {console.log(user?.displayName)}
       
       <div className={classes.post_container}>
         {

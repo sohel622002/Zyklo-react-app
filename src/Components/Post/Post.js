@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import classes from './Post.module.css'
 
 import { Avatar } from '@mui/material';
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
+import { addDoc, doc, collection, deleteDoc, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../Container/firebase';
+
+import dots from './../../Assest/dots.png';
 
 function Post(props) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
+    const [showdeleteBtn, setShowDeleteBtn] = useState(false);
 
 
     useEffect(() => {
@@ -42,14 +45,29 @@ function Post(props) {
 
     }
 
+    const deletePostHandler = async (username) => {
+        let postUsername = username.toLowerCase();
+        let currentUserName = props.currentUser.toLowerCase();
+        (postUsername === currentUserName) ? await deleteDoc(doc(db, 'posts', props.postId)) : alert('You Cant Delete Others Posts!')
+    }
+
+    function showDeleteBtnHandler() {
+        setShowDeleteBtn(!showdeleteBtn)
+        console.log('helo', showdeleteBtn)
+    }
+
     return (
         <div className={classes.post}>
             <div className={classes.post_header}>
-                <Avatar
-                    className={classes.post_avatar}
-                    alt={props.username}
-                    src='/' />
-                <h4>{props.username}</h4>
+                <div className={classes.avatar}>
+                    <Avatar
+                        className={classes.post_avatar}
+                        alt={props.username}
+                        src='/' />
+                    <h4>{props.username}</h4>
+                </div>
+                <img src={dots} onClick={showDeleteBtnHandler} />
+                <p className={showdeleteBtn ? classes.delete_btn : ''} onClick={() => deletePostHandler(props.username)}>Delete</p>
             </div>
             <div className={classes.post_image}><img src={props.imageURL} alt='post_image' /></div>
             <div className={classes.func}>like Share Comment</div>
@@ -63,8 +81,6 @@ function Post(props) {
                     ))
                 }
             </div>
-
-            {console.log(props.currentUser)}
 
             {props.currentUser &&
                 (<form className={classes.comment_input}>
