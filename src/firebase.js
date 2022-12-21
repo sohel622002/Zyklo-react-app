@@ -2,7 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
 import { getFirestore } from 'firebase/firestore';
-import {getAuth} from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 
 
 const firebasConfig = {
@@ -11,7 +11,7 @@ const firebasConfig = {
     projectId: "zyklo-react-app",
     storageBucket: "zyklo-react-app.appspot.com",
     messagingSenderId: "683355236539",
-    appId: "683355236539:web:fe1e997f2d6bc20a1b619e",
+    appId: "1:683355236539:web:fe1e997f2d6bc20a1b619e",
     measurementId: "G-WPPQZLP99K"
 };
 

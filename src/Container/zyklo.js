@@ -10,7 +10,6 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import SignUp from '../Components/SignUp/SignUp';
 import LogIn from '../Components/LogIn/LogIn';
 import ImageUpload from '../Components/ImageUpload/ImageUpload';
-import App from '../App';
 
 
 

@@ -2,14 +2,16 @@
     max-width: 380px;
     padding: 0 0px;
     margin: auto;
-    margin-bottom: 20px;
+    padding-bottom: 10px;
     border: 1px solid lightgrey;
     margin-top: 10px;
 }
-.Image_Upload_Container progress{
+.Image_Upload_Container .bar{
     width: 100%;
     margin-top: 10px;
     margin-bottom: 8px;
+    margin-inline: 7px;
+
 }
 .Image_Upload_Container input[type='file']{
     width: 100%;
@@ -30,6 +32,7 @@ input[type="file"]::-webkit-file-upload-button{
     font-size: 15px;
     border: none;
     border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
 
 }
 .caption_Btn button{
@@ -38,4 +41,19 @@ input[type="file"]::-webkit-file-upload-button{
     border: none;
     border-top: 1px solid lightgrey;
     border-left: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
 }
+
+.bar {
+    height: 10px;
+    background-color: #ffffff;
+  }
+  .bar::before {
+    content: '';
+    display: flex;
+    justify-content: end;
+    height: 100%;
+    border-radius: 10px;
+    background: #810CA8;
+    white-space: nowrap;
+  }

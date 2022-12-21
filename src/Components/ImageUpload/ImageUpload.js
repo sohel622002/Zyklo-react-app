@@ -57,7 +57,8 @@ function ImageUpload({ username }) {
     }
     return (
         <div className="Image_Upload_Container">
-            <progress value={progress} max="100" />
+            {/* <progress value={progress} max="100" /> */}
+            <div className="bar" style={{ width: progress}}></div>
             <input type='file'
                 onChange={handleChange} />
 
