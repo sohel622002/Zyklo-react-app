@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Post from '../Components/Post/Post';
-import { auth, db } from './firebase';
+import { auth, db } from '../firebase';
 import { collection, orderBy, query } from '@firebase/firestore';
 import classes from './zyklo.module.css'
 
@@ -10,6 +10,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import SignUp from '../Components/SignUp/SignUp';
 import LogIn from '../Components/LogIn/LogIn';
 import ImageUpload from '../Components/ImageUpload/ImageUpload';
+import App from '../App';
 
 
 
@@ -39,11 +40,11 @@ function Zyklo() {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCred) => {
 
-      
-          updateProfile(userCred.user, {
-            displayName: username
-          });
-          console.log("updated")
+
+        updateProfile(userCred.user, {
+          displayName: username
+        });
+        console.log("updated")
 
         setUser(userCred.user)
         setOpen(false)
@@ -127,7 +128,7 @@ function Zyklo() {
           )}
         </div>
       </div>
-      
+
       <div className={classes.post_container}>
         {
           posts?.map(({ id, post }) => (
@@ -143,13 +144,15 @@ function Zyklo() {
         }
       </div>
 
-      {
-        user?.displayName ? (
-          <ImageUpload username={user.displayName} />
-        ) : (
-          <h4 className={classes.login_pera}>Log In To Upload Posts</h4>
-        )
-      }
+      <div className={classes.postUploader}>
+        {
+          user?.displayName ? (
+            <ImageUpload username={user.displayName} />
+          ) : (
+            <h4 className={classes.login_pera}>Log In To Upload Posts</h4>
+          )
+        }
+      </div>
 
     </>
   )

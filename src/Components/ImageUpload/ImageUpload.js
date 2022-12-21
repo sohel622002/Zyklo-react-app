@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { db, storage } from "../../Container/firebase";
+import { db, storage } from "../../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 import './ImageUpload.css'

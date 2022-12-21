@@ -3,7 +3,7 @@ import classes from './Post.module.css'
 
 import { Avatar } from '@mui/material';
 import { addDoc, doc, collection, deleteDoc, onSnapshot, orderBy, query, serverTimestamp, updateDoc } from 'firebase/firestore';
-import { db } from '../../Container/firebase';
+import { db } from '../../firebase';
 
 import dots from './../../Assest/dots.png';
 
@@ -87,11 +87,11 @@ function Post(props) {
                         src='/' />
                     <h4>{props.username}</h4>
                 </div>
-                <img src={dots} onClick={showDeleteBtnHandler} alt="Three Dot Image" />
+                <img src={dots} onClick={showDeleteBtnHandler} alt="menu"/>
                 <button className={showdeleteBtn ? classes.delete_btn : ''} onClick={() => deletePostHandler(props.username)}>Delete</button>
             </div>
             <div className={classes.post_image}><img src={props.imageURL} alt='post_image' onDoubleClick={() => likeHandler(props.postId)}/></div>
-            <div className={classes.func}><div className={classes.heart} onClick={() => likeHandler(props.postId)} style={{ backgroundColor: liked ? 'red' : "" }} /><spna className={classes.likes}>{props.likes} Likes</spna>Share Comment</div>
+            <div className={classes.func}><div className={classes.heart} onClick={() => likeHandler(props.postId)} style={{ backgroundColor: liked ? 'red' : "" }} /><div className={classes.likes}>{props.likes} Likes</div>Share Comment</div>
             <div className={classes.user_caption}>
                 <h4>{props.username}</h4>{props.caption}<br />
             </div>
