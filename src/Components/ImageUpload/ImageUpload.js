@@ -44,6 +44,7 @@ function ImageUpload({ username }) {
                             ceatedAt: serverTimestamp(),
                             caption: caption,
                             imageURL: url,
+                            likes : 0,
                             userName: username
                         });
 

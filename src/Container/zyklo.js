@@ -33,18 +33,18 @@ function Zyklo() {
     })
   }, [])
 
-  const signUp = (event) => {
+  const signUp = async (event) => {
     event.preventDefault();
 
-    createUserWithEmailAndPassword(auth, email, password)
+    await createUserWithEmailAndPassword(auth, email, password)
       .then((userCred) => {
 
-        if (!userCred.user.displayName) {
+      
           updateProfile(userCred.user, {
             displayName: username
           });
           console.log("updated")
-        }
+
         setUser(userCred.user)
         setOpen(false)
         window.location.reload();
@@ -137,7 +137,8 @@ function Zyklo() {
               currentUser={user?.displayName}
               username={post.userName}
               imageURL={post.imageURL}
-              caption={post.caption} />
+              caption={post.caption}
+              likes={post?.likes} />
           ))
         }
       </div>
