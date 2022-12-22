@@ -1,0 +1,26 @@
+.my_post{
+    width: 175px;
+    height: 250px;
+    background-color: #fff;
+    margin-top: 11px;
+    position: relative;
+    overflow-y: hidden;
+    margin-inline: auto;
+}
+.my_post img{
+    width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+.post_likes{
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    background-color: #c38bd5;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

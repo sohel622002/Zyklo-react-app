@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Post from '../Components/Post/Post';
 import { auth, db } from '../firebase';
 import { collection, orderBy, query } from '@firebase/firestore';
 import classes from './zyklo.module.css'
@@ -9,7 +8,9 @@ import { onSnapshot } from "firebase/firestore";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import SignUp from '../Components/SignUp/SignUp';
 import LogIn from '../Components/LogIn/LogIn';
-import ImageUpload from '../Components/ImageUpload/ImageUpload';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import Posts from '../Components/Posts/Posts';
+import User from '../Components/User/User';
 
 
 
@@ -38,7 +39,6 @@ function Zyklo() {
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCred) => {
-
 
         updateProfile(userCred.user, {
           displayName: username
@@ -91,6 +91,12 @@ function Zyklo() {
     }
   }, []);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // console.log(user)
+  // console.log(location)
+
   return (
     <>
       {/* signup modal*/}
@@ -115,43 +121,34 @@ function Zyklo() {
         onpasschange={(e) => setPassword(e.target.value)}
         signIn={signIn} />
 
+
       <div className={classes.Header}>
         <h4>Zyklo</h4>
         <div className='btns'>
-          {user ? (
+          {user ? (<>
+            {/* <button onClick={() => signOut(auth)} className={classes.navbtn}>Log Out</button> */}
+            {
+            location.pathname === "/user" ? <button onClick={(e) => navigate('/')} className={classes.navbtn}>Home</button> : 
+            <>
             <button onClick={() => signOut(auth)} className={classes.navbtn}>Log Out</button>
-          ) : (<>
+            <button onClick={(e) => navigate('/user')} className={classes.navbtn}>My Account</button>
+            </>
+            }
+          </>) : (<>
             <button onClick={() => setOpen(true)} className={classes.navbtn}>Sign Up</button>
             <button onClick={() => setSignInOpen(true)} className={classes.navbtn}>Log In</button>
-          </>
-          )}
+          </>)
+          }
         </div>
       </div>
 
-      <div className={classes.post_container}>
-        {
-          posts?.map(({ id, post }) => (
-            <Post
-              key={id}
-              postId={id}
-              currentUser={user?.displayName}
-              username={post.userName}
-              imageURL={post.imageURL}
-              caption={post.caption}
-              likes={post?.likes} />
-          ))
-        }
-      </div>
+      {/* displayName={user?.displayName} posts={posts} */}
+      {/* {state : {user : {userName : user.displayName, Email : user.email}}} */}
 
-      <div className={classes.postUploader}>
-        {
-          user?.displayName ? (
-            <ImageUpload username={user.displayName} />
-          ) : (
-            <h4 className={classes.login_pera}>Log In To Upload Posts</h4>
-          )
-        }
-      </div>
+      <Routes>
+        <Route exact path="/" element={<Posts displayName={user?.displayName} posts={posts} uid={user?.uid}/>} />
+        <Route path="/user" element={<User userName={user?.displayName} Email={user?.email} posts={posts}/>} />
+      </Routes>
 
     </>
   )

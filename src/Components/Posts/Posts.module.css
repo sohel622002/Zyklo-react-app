@@ -1,0 +1,38 @@
+.postUploader {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: #dbcdcd44;
+    backdrop-filter: saturate(180%) blur(10px);
+}
+
+.login_pera {
+    max-width: 380px;
+    margin-inline: auto;
+    text-align: center;
+    padding: 5px 0;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+@media (min-width:810px) {
+    .post_container {
+        width: 90%;
+        max-width: 700px;
+        margin-inline: auto;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+}
+@media (min-width:1200px) {
+    .post_container {
+        width: 100%;
+        max-width: 1000px;
+        margin-inline: auto;
+        display: grid;
+        grid-template-columns: 33.33% 33.33% 33.33%;
+    }
+}

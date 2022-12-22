@@ -31,7 +31,6 @@ function ImageUpload({ username }) {
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                 );
                 setProgress(progress);
-                console.log(progress)
             },
             (error) => {
                 console.log(error)
@@ -57,7 +56,6 @@ function ImageUpload({ username }) {
     }
     return (
         <div className="Image_Upload_Container">
-            {/* <progress value={progress} max="100" /> */}
             <div className="bar" style={{ width: progress}}></div>
             <input type='file'
                 onChange={handleChange} />

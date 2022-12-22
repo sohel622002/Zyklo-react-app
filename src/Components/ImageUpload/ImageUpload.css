@@ -1,4 +1,4 @@
-.Image_Upload_Container{
+.Image_Upload_Container {
     max-width: 380px;
     padding: 0 0px;
     margin: auto;
@@ -6,27 +6,31 @@
     border: 1px solid lightgrey;
     margin-top: 10px;
 }
-.Image_Upload_Container .bar{
+
+.Image_Upload_Container .bar {
     width: 100%;
     margin-top: 10px;
     margin-bottom: 8px;
     margin-inline: 7px;
 
 }
-.Image_Upload_Container input[type='file']{
+
+.Image_Upload_Container input[type='file'] {
     width: 100%;
     margin-bottom: 7px;
 }
-.caption_Btn{
+
+.caption_Btn {
     width: 100%;
     display: flex;
 }
 
-input[type="file"]::-webkit-file-upload-button{
+input[type="file"]::-webkit-file-upload-button {
     padding: 5px 10px;
     margin-left: 5px;
 }
-.caption_Btn input{
+
+.caption_Btn input {
     flex: 1;
     padding: 0px 8px;
     font-size: 15px;
@@ -35,7 +39,8 @@ input[type="file"]::-webkit-file-upload-button{
     border-bottom: 1px solid lightgrey;
 
 }
-.caption_Btn button{
+
+.caption_Btn button {
     padding: 5px 10px;
     background-color: white;
     border: none;
@@ -46,14 +51,14 @@ input[type="file"]::-webkit-file-upload-button{
 
 .bar {
     height: 10px;
-    background-color: #ffffff;
-  }
-  .bar::before {
+}
+
+.bar::before {
     content: '';
     display: flex;
     justify-content: end;
     height: 100%;
     border-radius: 10px;
-    background: #810CA8;
+    background: #810ca8;
     white-space: nowrap;
-  }
+}

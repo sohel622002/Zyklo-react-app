@@ -1,6 +1,6 @@
 .post {
     width: 95%;
-    max-width: 400px;
+    max-width: 370px;
     margin-inline: auto;
     height: auto;
     margin-top: 10px;
@@ -10,9 +10,10 @@
     display: flex;
     align-items: center;
     width: 100%;
-    border: 1px solid lightgrey;
     padding: 10px 10px;
     position: relative;
+    background-color: #DBCCCC;
+    height: 56px;
 }
 .post_header img{
     width: 21px;
@@ -60,8 +61,7 @@
 
 .func {
     margin-top: -4px;
-    border-bottom: 1px solid lightgrey;
-    border-inline: 1px solid lightgrey;
+    background-color: #A4A4A4;
     display: flex;
     align-items: center;
 }
@@ -73,9 +73,7 @@
 
 .user_caption {
     display: flex;
-    border-bottom: 1px solid lightgrey;
-    border-left: 1px solid lightgrey;
-    border-right: 1px solid lightgrey;
+    background-color: #DBCCCC;
 }
 
 .user_caption h4 {
@@ -84,10 +82,7 @@
 
 .comments {
     width: 100%;
-    border-left: 1px solid lightgrey;
-    border-right: 1px solid lightgrey;
-    border-bottom: 1px solid lightgrey;
-    /* background-color: aqua; */
+    background-color: #DBCCCC;
     padding: 5px 10px;
     max-height: 100px;
     overflow-y: scroll;
@@ -121,20 +116,23 @@
     padding: 5px 10px;
     font-size: 15px;
     border: none;
-    border-top: 1px solid lightgrey;
-    border-bottom: 1px solid lightgrey;
-    border-left: 1px solid lightgrey;
+    font-size: 17px;
+    border-bottom: 1px solid #DBCCCC;
+    border-left: 1px solid #DBCCCC;
 }
 
 .comment_input button {
     padding-left: 7px;
     padding-right: 7px;
-    border: 1px solid lightgrey;
+    border: none;
+    border-left: 1px solid #DBCCCC;
+    border-right: 1px solid #DBCCCC;
+    border-bottom: 1px solid #DBCCCC;
+    background-color: white;
 }
 
 .heart {
-    /* background-color: #810CA8; */
-    background-color: lightgray;
+    background-color: white;
     display: inline-block;
     width: 15px;
     aspect-ratio: 1;

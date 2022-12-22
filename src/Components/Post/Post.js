@@ -9,6 +9,7 @@ import dots from './../../Assest/dots.png';
 
 function Post(props) {
     const [comments, setComments] = useState([]);
+    const [likeDetail, setLikeDetail] = useState([]);
     const [comment, setComment] = useState('');
     const [showdeleteBtn, setShowDeleteBtn] = useState(false);
     const [liked, setLiked] = useState(false)
@@ -48,7 +49,7 @@ function Post(props) {
 
     const deletePostHandler = async (username) => {
         let postUsername = username.toLowerCase();
-        let currentUserName = props.currentUser.toLowerCase();
+        let currentUserName = props.currentUser?.toLowerCase();
         (postUsername === currentUserName) ? await deleteDoc(doc(db, 'posts', props.postId)) : alert('You Cant Delete Others Posts!')
         setShowDeleteBtn(false)
     }
@@ -79,6 +80,7 @@ function Post(props) {
 
     return (
         <div className={classes.post}>
+            
             <div className={classes.post_header}>
                 <div className={classes.avatar}>
                     <Avatar
@@ -87,11 +89,14 @@ function Post(props) {
                         src='/' />
                     <h4>{props.username}</h4>
                 </div>
-                <img src={dots} onClick={showDeleteBtnHandler} alt="menu"/>
+                <img src={dots} onClick={showDeleteBtnHandler} alt="menu" />
                 <button className={showdeleteBtn ? classes.delete_btn : ''} onClick={() => deletePostHandler(props.username)}>Delete</button>
             </div>
-            <div className={classes.post_image}><img src={props.imageURL} alt='post_image' onDoubleClick={() => likeHandler(props.postId)}/></div>
+
+            <div className={classes.post_image}><img src={props.imageURL} alt='post_image' onDoubleClick={() => likeHandler(props.postId)} /></div>
+
             <div className={classes.func}><div className={classes.heart} onClick={() => likeHandler(props.postId)} style={{ backgroundColor: liked ? 'red' : "" }} /><div className={classes.likes}>{props.likes} Likes</div>Share Comment</div>
+
             <div className={classes.user_caption}>
                 <h4>{props.username}</h4>{props.caption}<br />
             </div>

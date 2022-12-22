@@ -1,0 +1,75 @@
+.Avatar {
+    width: 153px;
+    aspect-ratio: 1;
+    background-color: #D9D9D9;
+    margin-top: 35px;
+    margin-inline: auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    position: relative;
+    box-shadow: 0px 0px 0px 4px #ffffff, 0px 0px 0px 6px #810CA8;
+}
+
+.username{
+    width: 100%;
+    font-weight: 400;
+    margin-top: 35px;
+    text-align: center;
+}
+
+.email{
+    margin-top: 35px;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.my_posts{
+    width: 100%;
+    height: auto;
+    background-color: #EBD8F1;
+    margin-top: 35px;
+    text-align: center;
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+
+.post_title{
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.grid{
+    display: grid;
+    width: 95%;
+    max-width: 800px;
+    margin-inline: auto;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5px;
+}
+.navbtn {
+    font-size: 18px;
+    padding: 10px;
+    width: 95%;
+    max-width: 400px;
+    margin-top: 20px;
+    color: #810CA8;
+    border: 1px solid #810CA8;
+}
+
+@media (max-width : 414px){
+    .grid{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+@media (min-width : 700px){
+    .grid{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

@@ -69,30 +69,6 @@
     text-align: center;
 }
 
-.login_pera {
-    max-width: 380px;
-    margin-inline: auto;
-    text-align: center;
-    padding: 5px 0;
-    padding-bottom: 10px;
-    font-size: 18px;
-    font-weight: 500;
-}
 
-.postUploader {
-    position: sticky;
-    bottom: 0;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.292);
-    backdrop-filter: saturate(180%) blur(10px);
-}
 
-@media (min-width:810px) {
-    .post_container {
-        width: 90%;
-        max-width: 850px;
-        margin-inline: auto;
-        display: grid;
-        grid-template-columns: 50% 50%;
-    }
-}
+
