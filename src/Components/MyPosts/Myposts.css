@@ -1,4 +1,4 @@
-.my_post{
+.my_post {
     width: 175px;
     height: 250px;
     background-color: #fff;
@@ -7,12 +7,14 @@
     overflow-y: hidden;
     margin-inline: auto;
 }
-.my_post img{
+
+.my_post img {
     width: 100%;
     min-height: 100%;
     object-fit: cover;
 }
-.post_likes{
+
+.post_likes {
     width: 100%;
     box-sizing: border-box;
     height: 40px;
@@ -23,4 +25,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width : 370px) {
+    .my_post {
+        width: 95%;
+    }
 }

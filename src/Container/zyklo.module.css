@@ -24,40 +24,14 @@
     font-weight: 300;
 }
 
-.modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.Signup_Page {
-    padding: 20px 10px;
-    max-width: 380px;
-    background-color: white;
-    margin: 0 10px;
-}
 
-.Signup_Page h4 {
-    font-weight: 300;
-    font-size: 25px;
-    color: #810CA8;
-    text-align: center;
-}
 
-.Signup_Page input {
-    width: 100%;
-    font-size: 16px;
-    padding: 5px;
-    margin: 10px 0px;
-    border: none;
-    border-bottom: 1px solid #810CA8;
-}
 
-.Signup_Page button {
-    width: 100%;
-    font-size: 16px;
-    padding: 5px 0;
-}
+
+
+
+
 
 .navbtn {
     padding: 5px 10px;

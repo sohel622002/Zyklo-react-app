@@ -12,7 +12,7 @@
     width: 100%;
     padding: 10px 10px;
     position: relative;
-    background-color: #DBCCCC;
+    background-color: #EBD8F1;
     height: 56px;
 }
 .post_header img{
@@ -73,7 +73,7 @@
 
 .user_caption {
     display: flex;
-    background-color: #DBCCCC;
+    background-color: #EBD8F1;
 }
 
 .user_caption h4 {
@@ -82,7 +82,7 @@
 
 .comments {
     width: 100%;
-    background-color: #DBCCCC;
+    background-color: #EBD8F1;
     padding: 5px 10px;
     max-height: 100px;
     overflow-y: scroll;
@@ -117,17 +117,17 @@
     font-size: 15px;
     border: none;
     font-size: 17px;
-    border-bottom: 1px solid #DBCCCC;
-    border-left: 1px solid #DBCCCC;
+    border-bottom: 1px solid #EBD8F1;
+    border-left: 1px solid #EBD8F1;
 }
 
 .comment_input button {
     padding-left: 7px;
     padding-right: 7px;
     border: none;
-    border-left: 1px solid #DBCCCC;
-    border-right: 1px solid #DBCCCC;
-    border-bottom: 1px solid #DBCCCC;
+    border-left: 1px solid #EBD8F1;
+    border-right: 1px solid #EBD8F1;
+    border-bottom: 1px solid #EBD8F1;
     background-color: white;
 }
 

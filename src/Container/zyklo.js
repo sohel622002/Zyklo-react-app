@@ -17,12 +17,14 @@ import User from '../Components/User/User';
 function Zyklo() {
 
   const [posts, setPosts] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [signUpOpen, setSignUpOpen] = useState(false);
   const [signInOpen, setSignInOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmpassword, setConfirmPassword] = useState('');
   const [user, setUser] = useState(null);
+  const [error, setError] = useState('');
 
 
   useEffect(() => {
@@ -34,9 +36,11 @@ function Zyklo() {
     })
   }, [])
 
+
   const signUp = async (event) => {
     event.preventDefault();
 
+    if (password !== confirmpassword) { return setError('password not matched') }
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCred) => {
 
@@ -46,11 +50,11 @@ function Zyklo() {
         console.log("updated")
 
         setUser(userCred.user)
-        setOpen(false)
+        setSignUpOpen(false)
         window.location.reload();
       })
       .catch((error) => {
-        alert(error);
+        setError(error.message);
       })
   }
 
@@ -97,18 +101,31 @@ function Zyklo() {
   // console.log(user)
   // console.log(location)
 
+  useEffect(() => {
+    setTimeout(function () {
+      setError('')
+    }, 7000)
+  }, [error])
+
   return (
     <>
       {/* signup modal*/}
       <SignUp
-        open={open}
-        onclose={() => setOpen(false)}
+        open={signUpOpen}
+        onclose={() => setSignUpOpen(false)}
         username={username}
         email={email}
         password={password}
+        confirmpassword={confirmpassword}
+        error={error}
         onuserchange={(e) => setUsername(e.target.value)}
         onemailchange={(e) => setEmail(e.target.value)}
         onpasschange={(e) => setPassword(e.target.value)}
+        onconfirmpasschange={(e) => setConfirmPassword(e.target.value)}
+        signInOpen={() => {
+          setSignInOpen(true)
+          setSignUpOpen(false)
+        }}
         signUp={signUp} />
 
       {/* sign im modal */}
@@ -119,6 +136,10 @@ function Zyklo() {
         password={password}
         onemailchange={(e) => setEmail(e.target.value)}
         onpasschange={(e) => setPassword(e.target.value)}
+        signUpOpen={() => {
+          setSignInOpen(false)
+          setSignUpOpen(true)
+        }}
         signIn={signIn} />
 
 
@@ -128,14 +149,14 @@ function Zyklo() {
           {user ? (<>
             {/* <button onClick={() => signOut(auth)} className={classes.navbtn}>Log Out</button> */}
             {
-            location.pathname === "/user" ? <button onClick={(e) => navigate('/')} className={classes.navbtn}>Home</button> : 
-            <>
-            <button onClick={() => signOut(auth)} className={classes.navbtn}>Log Out</button>
-            <button onClick={(e) => navigate('/user')} className={classes.navbtn}>My Account</button>
-            </>
+              location.pathname === "/user" ? <button onClick={(e) => navigate('/')} className={classes.navbtn}>Home</button> :
+                <>
+                  <button onClick={() => signOut(auth)} className={classes.navbtn}>Log Out</button>
+                  <button onClick={(e) => navigate('/user')} className={classes.navbtn}>My Account</button>
+                </>
             }
           </>) : (<>
-            <button onClick={() => setOpen(true)} className={classes.navbtn}>Sign Up</button>
+            <button onClick={() => setSignUpOpen(true)} className={classes.navbtn}>Sign Up</button>
             <button onClick={() => setSignInOpen(true)} className={classes.navbtn}>Log In</button>
           </>)
           }
@@ -146,8 +167,8 @@ function Zyklo() {
       {/* {state : {user : {userName : user.displayName, Email : user.email}}} */}
 
       <Routes>
-        <Route exact path="/" element={<Posts displayName={user?.displayName} posts={posts} uid={user?.uid}/>} />
-        <Route path="/user" element={<User userName={user?.displayName} Email={user?.email} posts={posts}/>} />
+        <Route exact path="/" element={<Posts displayName={user?.displayName} posts={posts} uid={user?.uid} />} />
+        <Route path="/user" element={<User userName={user?.displayName} Email={user?.email} posts={posts} />} />
       </Routes>
 
     </>

@@ -56,7 +56,6 @@ function Post(props) {
 
     function showDeleteBtnHandler() {
         setShowDeleteBtn(!showdeleteBtn)
-        console.log('helo', showdeleteBtn)
     }
 
 

@@ -60,7 +60,7 @@
     border: 1px solid #810CA8;
 }
 
-@media (max-width : 414px){
+@media (max-width : 370px){
     .grid{
         display: flex;
         align-items: center;
