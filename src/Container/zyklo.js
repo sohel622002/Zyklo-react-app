@@ -41,14 +41,13 @@ function Zyklo() {
     event.preventDefault();
 
     if (password !== confirmpassword) { return setError('password not matched') }
+    if (!username) { return setError('UserName Required') }
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCred) => {
-
         updateProfile(userCred.user, {
           displayName: username
         });
         console.log("updated")
-
         setUser(userCred.user)
         setSignUpOpen(false)
         window.location.reload();
@@ -74,7 +73,7 @@ function Zyklo() {
         setSignInOpen(false);
       })
       .catch((error) => {
-        alert(error.message)
+        setError(error.message)
       })
   }
 
@@ -134,6 +133,7 @@ function Zyklo() {
         onclose={() => setSignInOpen(false)}
         email={email}
         password={password}
+        error={error}
         onemailchange={(e) => setEmail(e.target.value)}
         onpasschange={(e) => setPassword(e.target.value)}
         signUpOpen={() => {

@@ -17,8 +17,6 @@ export default function User(props) {
     }
   } 
 
-  console.log(mypost)
-
   return (
     <>
     <div className="Avatar">

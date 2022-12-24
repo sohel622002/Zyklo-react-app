@@ -22,7 +22,7 @@ const SignUp = (props) => (
         placeholder='userName'
         type='text'
         value={props.username}
-        onChange={props.onuserchange} />
+        onChange={props.onuserchange}/>
 
       <input
         placeholder='Email'

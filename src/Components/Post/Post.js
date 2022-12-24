@@ -12,7 +12,7 @@ function Post(props) {
     const [likeDetail, setLikeDetail] = useState([]);
     const [comment, setComment] = useState('');
     const [showdeleteBtn, setShowDeleteBtn] = useState(false);
-    const [liked, setLiked] = useState(false)
+    const [error, setError] = useState('');
 
 
     useEffect(() => {
@@ -31,6 +31,18 @@ function Post(props) {
         }
     }, [props.postId]);
 
+    // console.log(props.likes)
+
+    useEffect(() => {
+        // console.log('liked')
+        setLikeDetail(props.likes)
+    }, [props.likes]);
+
+    useEffect(() => {
+        setTimeout(function () {
+            setError('')
+        }, 7000)
+    }, [error])
 
     const postComment = (event) => {
         event.preventDefault();
@@ -50,7 +62,7 @@ function Post(props) {
     const deletePostHandler = async (username) => {
         let postUsername = username.toLowerCase();
         let currentUserName = props.currentUser?.toLowerCase();
-        (postUsername === currentUserName) ? await deleteDoc(doc(db, 'posts', props.postId)) : alert('You Cant Delete Others Posts!')
+        (postUsername === currentUserName) ? await deleteDoc(doc(db, 'posts', props.postId)) : setError('You Cant Delete Others Posts!')
         setShowDeleteBtn(false)
     }
 
@@ -58,28 +70,36 @@ function Post(props) {
         setShowDeleteBtn(!showdeleteBtn)
     }
 
+    // console.log(props.uid)
 
     const likeHandler = (postId) => {
-        if (liked) {
-            setLiked(false)
-            updateDoc(doc(db, "posts", (postId)), {
-                likes: props.likes - 1
+        if (!props.uid) {
+            return setError("You need to LogIn to like Posts")
+        }
+        if (likeDetail?.includes(props.uid)) {
+            console.log(props.uid)
+            let updatedlikeDetail = [...likeDetail]
+            if (updatedlikeDetail.indexOf(props.uid) > -1) {
+                updatedlikeDetail.splice(updatedlikeDetail.indexOf(props.uid), 1)
             }
-            ).then((res) => {})
-            .catch((error) => console.log(error))
-        }else{
-            setLiked(true)
             updateDoc(doc(db, "posts", (postId)), {
-                likes: props.likes + 1
+                likes: updatedlikeDetail
             }
-            ).then((res) => {})
-            .catch((error) => console.log(error))
+            ).then((res) => { })
+                .catch((error) => console.log(error))
+        } else {
+            updateDoc(doc(db, "posts", (postId)), {
+                likes: [...likeDetail, props.uid]
+            }
+            ).then((res) => { console.log('updated likes') })
+                .catch((error) => console.log(error))
         }
     }
 
     return (
         <div className={classes.post}>
-            
+
+            {/* POST Header */}
             <div className={classes.post_header}>
                 <div className={classes.avatar}>
                     <Avatar
@@ -88,17 +108,49 @@ function Post(props) {
                         src='/' />
                     <h4>{props.username}</h4>
                 </div>
+
+                {/* Post Header Menu */}
                 <img src={dots} onClick={showDeleteBtnHandler} alt="menu" />
-                <button className={showdeleteBtn ? classes.delete_btn : ''} onClick={() => deletePostHandler(props.username)}>Delete</button>
+
+                <button
+                    className={showdeleteBtn ? classes.delete_btn : ''}
+                    onClick={() => deletePostHandler(props.username)}>
+                    Delete
+                </button>
+
+
             </div>
 
-            <div className={classes.post_image}><img src={props.imageURL} alt='post_image' onDoubleClick={() => likeHandler(props.postId)} /></div>
+            {/* Post Image */}
+            <div
+                className={classes.post_image}>
+                <img src={props.imageURL}
+                    alt='post_image'
+                    onDoubleClick={() => likeHandler(props.postId)} />
+            </div>
 
-            <div className={classes.func}><div className={classes.heart} onClick={() => likeHandler(props.postId)} style={{ backgroundColor: liked ? 'red' : "" }} /><div className={classes.likes}>{props.likes} Likes</div>Share Comment</div>
+            {/* Like Functionality */}
+            <div
+                className={classes.func}>
+                <div className={classes.heart}
+                    onClick={() => likeHandler(props.postId)}
+                    style={{ backgroundColor: likeDetail?.includes(props.uid) ? 'red' : "" }}
+                />
+                <div className={classes.likes}>{likeDetail.length} Likes</div>Share Comment
 
+                {error ? (
+                    <div className={classes.error_div}>
+                        {error}
+                    </div>
+                ) : null}
+
+            </div>
+            {/* UserName & Caption */}
             <div className={classes.user_caption}>
                 <h4>{props.username}</h4>{props.caption}<br />
             </div>
+
+            {/* Post Comments */}
             <div className={classes.comments}>
                 {
                     comments.map(({ id, comment }) => (
@@ -107,6 +159,7 @@ function Post(props) {
                 }
             </div>
 
+            {/* Comment Input */}
             {props.currentUser &&
                 (<form className={classes.comment_input}>
 

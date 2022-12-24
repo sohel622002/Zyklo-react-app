@@ -8,8 +8,14 @@ const LogIn = (props) => (
     open={props.signInOpen}
     onClose={props.onclose}
   >
-    <form className={classes.Signup_Page}>
+    <form className={classes.SignIn_Page}>
       <h4>Zyklo</h4>
+
+      {
+        props.error ? (<div className={classes.error}>
+          {props.error}
+        </div>) : null
+      }
 
       <input
         placeholder='Email'
@@ -25,7 +31,7 @@ const LogIn = (props) => (
 
       <button onClick={props.signIn}>Sign In</button>
 
-      <div className={classes.SignUp_footer}>
+      <div className={classes.SignIn_footer}>
         <p>Dont have an Acount?</p>
         <p onClick={props.signUpOpen} className={classes.loginLink}>Sign Un</p>
       </div>
