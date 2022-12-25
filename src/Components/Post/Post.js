@@ -105,7 +105,7 @@ function Post(props) {
                     <Avatar
                         className={classes.post_avatar}
                         alt={props.username}
-                        src='/' />
+                        src={props?.profilePic}/>
                     <h4>{props.username}</h4>
                 </div>
 

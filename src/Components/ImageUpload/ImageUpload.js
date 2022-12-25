@@ -5,7 +5,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 import './ImageUpload.css'
 
-function ImageUpload({ username }) {
+function ImageUpload({ username, profilePic }) {
     const [caption, setCaption] = useState('');
     const [image, setImage] = useState(null);
     const [progress, setProgress] = useState(0);
@@ -44,7 +44,8 @@ function ImageUpload({ username }) {
                             caption: caption,
                             imageURL: url,
                             likes : [],
-                            userName: username
+                            userName: username,
+                            profilePic : profilePic
                         });
 
                         setImage(null);

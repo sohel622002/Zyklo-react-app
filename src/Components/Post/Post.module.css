@@ -15,11 +15,25 @@
     background-color: #EBD8F1;
     height: 56px;
 }
+
+
 .post_header img{
     width: 21px;
     position: absolute;
     right: 10px;
     cursor: pointer;
+}
+.post_avatar{
+    position: relative;
+    box-shadow: 0 0 0 2px white ,0 0 0 4px #810CA8;
+}
+.post_avatar>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    right: 0;
+    top: 0;
 }
 
 .post_header button{
@@ -55,7 +69,6 @@
     background-color: salmon;
     width: 100%;
     color: red;
-    /* bottom: -60%; */
     top: -70%;
     left: 0;
     padding: 5px;

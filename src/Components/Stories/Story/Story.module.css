@@ -17,6 +17,8 @@
     font-size: 35px;
     font-weight: 400;
     height: 100%;
+    display: grid;
+    place-items: center;
 }
 .Single_Story_Img img{
     width: 100%;

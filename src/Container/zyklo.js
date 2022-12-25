@@ -168,7 +168,7 @@ function Zyklo() {
         </div>
       </div>
       <Routes>
-        <Route exact path="/" element={<Posts displayName={user?.displayName} posts={posts} uid={user?.uid} />} />
+        <Route exact path="/" element={<Posts displayName={user?.displayName} posts={posts} uid={user?.uid} profilePic={user?.photoURL}/>} />
         <Route path="/user" element={<User user={user} posts={posts}/>} />
       </Routes>
 

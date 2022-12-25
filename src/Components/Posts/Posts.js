@@ -24,6 +24,7 @@ export default function Posts(props) {
               key={id}
               postId={id}
               currentUser={props?.displayName}
+              profilePic={post?.profilePic}
               username={post.userName}
               imageURL={post.imageURL}
               caption={post.caption}
@@ -37,7 +38,7 @@ export default function Posts(props) {
       <div className={classes.postUploader}>
         {
           props.displayName ? (
-            <ImageUpload username={props.displayName} />
+            <ImageUpload username={props.displayName} profilePic={props.profilePic}/>
           ) : (
             <h4 className={classes.login_pera}>Log In To Upload Posts</h4>
           )
