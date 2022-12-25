@@ -1,0 +1,23 @@
+.stories {
+    /* background-color: red; */
+    width: 95%;
+    margin-inline: auto;
+    margin-top: 10px;
+    display: flex;
+    overflow-x: scroll;
+    padding: 10px 0;
+}
+
+.stories::-webkit-scrollbar {
+    height: 7px;
+}
+
+.stories::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: #f1f1f1;
+}
+
+.stories::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}

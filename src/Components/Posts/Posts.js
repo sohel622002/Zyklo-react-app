@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import Post from '../Post/Post';
+import Stories from '../Stories/Stories';
 
 import classes from './Posts.module.css'
 
@@ -13,15 +14,9 @@ export default function Posts(props) {
     setPosts(props.posts)
   }, [props.posts])
 
-  // useEffect(() => {
-  //   setUserName(props.displayName)
-  //   console.log('username changed')
-  // }, [props.displayName])
-
-  // console.log(userName)
-
   return (
-    <>
+    <div className={classes.container}>
+      <Stories />
       <div className={classes.post_container}>
         {
           posts?.map(({ id, post }) => (
@@ -48,6 +43,6 @@ export default function Posts(props) {
           )
         }
       </div>
-    </>
+    </div>
   )
 }

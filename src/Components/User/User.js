@@ -1,40 +1,85 @@
-import { signOut } from 'firebase/auth';
-import React from 'react'
-import { auth } from '../../firebase';
+import { signOut, updateCurrentUser, updateProfile } from 'firebase/auth';
+import React, { useEffect, useState } from 'react'
+import { auth, db, storage } from '../../firebase';
 
 import Myposts from '../MyPosts/Myposts';
 import './User.css';
+import camera from '../../Assest/camera.png'
+import { doc, updateDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
 export default function User(props) {
+
+  const [wait, setWait] = useState(false)
 
   const posts = props.posts
 
   let mypost = []
 
-  for(let i = 0; i < posts.length; ++i){
-    if(posts[i].post.userName === props.userName){
+  for (let i = 0; i < posts.length; ++i) {
+    if (posts[i].post.userName === props.user.userName) {
       mypost.push(posts[i])
     }
-  } 
+  }
+
+  const imageUploadHandler = (event) => {
+
+    let image = ''
+
+    if (event.target.files[0]) {
+      image = event.target.files[0]
+    }
+
+    const imageRef = ref(storage, `profileImages/${image.name}`);
+    const uploadTask = uploadBytesResumable(imageRef, image)
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => { setWait(true) },
+      (error) => {
+        console.log(error)
+      },
+      () => {
+        console.log('fire')
+        getDownloadURL(imageRef)
+          .then((url) => {
+            // setURL(url)
+            updateDoc(doc(db, "Users", (props.user.uid)), {
+              profileImg: url
+            })
+            updateProfile(props.user, {
+              photoURL: url
+            })
+          })
+          setWait(false)
+      }
+    )
+
+
+  }
 
   return (
     <>
-    <div className="Avatar">
-      Upload Profile Pic
-    </div>
-    <h2 className='username'>{props.userName ? props.userName : 'UserName'}</h2>
-    <h4 className='email'>Email : {props.Email}</h4>
-    <div className='my_posts'>
-      <h4 className='post_title'>My Posts</h4>
-      <div className='grid'>
-        {
-          mypost?.map(({id, post}) => (
-            <Myposts key={id} post_image_url={post.imageURL} likes={post.likes}/>
-          ))
-        }
+      <div className="Avatar">
+        {props.user?.photoURL ? <img src={props.user?.photoURL} className='image'/> : "Upload Profile Pic"}
+        <label htmlFor='profilrImgPiker'>
+          {wait ? <div class="loader">Loading...</div> : <img src={camera} />}
+          <input id='profilrImgPiker' type='file' onChange={imageUploadHandler} disabled={wait}/>
+        </label>
       </div>
-      <button onClick={() => signOut(auth)} className='navbtn'>Log Out</button>
-    </div>
+      <h2 className='username'>{props.user?.displayName ? props.user.displayName : 'UserName'}</h2>
+      <h4 className='email'>Email : {props.user?.email}</h4>
+      <div className='my_posts'>
+        <h4 className='post_title'>My Posts</h4>
+        <div className='grid'>
+          {
+            mypost?.map(({ id, post }) => (
+              <Myposts key={id} post_image_url={post.imageURL} likes={post.likes.length} />
+            ))
+          }
+        </div>
+        <button onClick={() => signOut(auth)} className='navbtn'>Log Out</button>
+      </div>
     </>
   )
 }

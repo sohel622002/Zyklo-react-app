@@ -39,6 +39,7 @@
     background-color: #810CA8;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .SignIn_footer{
@@ -55,6 +56,7 @@
 .SignIn_footer .loginLink{
     color: blue;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .error{

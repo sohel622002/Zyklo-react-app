@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { auth, db } from '../firebase';
-import { collection, orderBy, query } from '@firebase/firestore';
+import { collection, doc, orderBy, query, setDoc } from '@firebase/firestore';
 import classes from './zyklo.module.css'
 
 
@@ -41,20 +41,29 @@ function Zyklo() {
     event.preventDefault();
 
     if (password !== confirmpassword) { return setError('password not matched') }
+
     if (!username) { return setError('UserName Required') }
+
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCred) => {
+        console.log("updated")
         updateProfile(userCred.user, {
           displayName: username
         });
-        console.log("updated")
-        setUser(userCred.user)
-        setSignUpOpen(false)
+        setUser(userCred.user);
+        setSignUpOpen(false);
+        console.log(userCred)
+        return setDoc(doc(db, "Users", userCred.user.uid), {
+          profileImg: '',
+          UserName: username
+        });
+      }).then(() => {
         window.location.reload();
       })
       .catch((error) => {
         setError(error.message);
       })
+
   }
 
   const signIn = (event) => {
@@ -63,12 +72,6 @@ function Zyklo() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCred) => {
         console.log('logedin')
-
-        // if (!user?.displayName) {
-        //   updateProfile(userCred.user, {
-        //     displayName: username
-        //   });
-        // }
         setUser(userCred.user);
         setSignInOpen(false);
       })
@@ -105,6 +108,8 @@ function Zyklo() {
       setError('')
     }, 7000)
   }, [error])
+
+  console.log(user)
 
   return (
     <>
@@ -162,13 +167,9 @@ function Zyklo() {
           }
         </div>
       </div>
-
-      {/* displayName={user?.displayName} posts={posts} */}
-      {/* {state : {user : {userName : user.displayName, Email : user.email}}} */}
-
       <Routes>
         <Route exact path="/" element={<Posts displayName={user?.displayName} posts={posts} uid={user?.uid} />} />
-        <Route path="/user" element={<User userName={user?.displayName} Email={user?.email} posts={posts} />} />
+        <Route path="/user" element={<User user={user} posts={posts}/>} />
       </Routes>
 
     </>

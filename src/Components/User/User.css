@@ -13,6 +13,36 @@
     box-shadow: 0px 0px 0px 4px #ffffff, 0px 0px 0px 6px #810CA8;
 }
 
+.image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.Avatar input{
+    display: none;
+}
+
+label{
+    position: absolute;
+    background-color: white;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    bottom: 0;
+    right: 0;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 0 0 2px #810CA8, 0 0 0 4px white;
+}
+
+label img{
+    width: 30px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
 .username{
     width: 100%;
     font-weight: 400;
@@ -72,4 +102,45 @@
     .grid{
         grid-template-columns: 1fr 1fr 1fr;
     }
+}
+.loader{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    text-indent: -9999em;
+}
+.loader::before{
+    content: '';
+    background-color: #ffffff;
+    position: absolute;
+    width: 75%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    right: 4px;
+    top: 5px;
+    z-index: 55;
+} 
+.loader::after{
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    border-top: 6px solid rgba(129,12,168, 0.2);
+    border-right: 6px solid rgba(129,12,168, 0.2);
+    border-bottom: 6px solid rgba(129,12,168, 0.2);
+    border-left: 6px solid #810ca8;
+    transform: translateZ(0);
+    animation: infinite ease-in 2s loading;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

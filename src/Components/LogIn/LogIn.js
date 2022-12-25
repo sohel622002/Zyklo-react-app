@@ -33,7 +33,7 @@ const LogIn = (props) => (
 
       <div className={classes.SignIn_footer}>
         <p>Dont have an Acount?</p>
-        <p onClick={props.signUpOpen} className={classes.loginLink}>Sign Un</p>
+        <p onClick={props.signUpOpen} className={classes.loginLink}>Sign Up</p>
       </div>
     </form>
   </Modal>
