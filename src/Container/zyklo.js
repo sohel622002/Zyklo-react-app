@@ -100,16 +100,13 @@ function Zyklo() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // console.log(user)
-  // console.log(location)
-
   useEffect(() => {
     setTimeout(function () {
       setError('')
     }, 7000)
   }, [error])
 
-  console.log(user)
+
 
   return (
     <>
@@ -147,29 +144,30 @@ function Zyklo() {
         }}
         signIn={signIn} />
 
-
-      <div className={classes.Header}>
-        <h4>Zyklo</h4>
-        <div className='btns'>
-          {user ? (<>
-            {/* <button onClick={() => signOut(auth)} className={classes.navbtn}>Log Out</button> */}
-            {
-              location.pathname === "/user" ? <button onClick={(e) => navigate('/')} className={classes.navbtn}>Home</button> :
-                <>
-                  <button onClick={() => signOut(auth)} className={classes.navbtn}>Log Out</button>
-                  <button onClick={(e) => navigate('/user')} className={classes.navbtn}>My Account</button>
-                </>
+      <div className={classes.container}>
+        <div className={classes.Header}>
+          <h4>Zyklo</h4>
+          <div className='btns'>
+            {user ? (<>
+              {/* <button onClick={() => signOut(auth)} className={classes.navbtn}>Log Out</button> */}
+              {
+                location.pathname === "/user" ? <button onClick={(e) => navigate('/')} className={classes.navbtn}>Home</button> :
+                  <>
+                    <button onClick={() => signOut(auth)} className={classes.navbtn}>Log Out</button>
+                    <button onClick={(e) => navigate('/user')} className={classes.navbtn}>My Account</button>
+                  </>
+              }
+            </>) : (<>
+              <button onClick={() => setSignUpOpen(true)} className={classes.navbtn}>Sign Up</button>
+              <button onClick={() => setSignInOpen(true)} className={classes.navbtn}>Log In</button>
+            </>)
             }
-          </>) : (<>
-            <button onClick={() => setSignUpOpen(true)} className={classes.navbtn}>Sign Up</button>
-            <button onClick={() => setSignInOpen(true)} className={classes.navbtn}>Log In</button>
-          </>)
-          }
+          </div>
         </div>
       </div>
       <Routes>
-        <Route exact path="/" element={<Posts displayName={user?.displayName} posts={posts} uid={user?.uid} profilePic={user?.photoURL}/>} />
-        <Route path="/user" element={<User user={user} posts={posts}/>} />
+        <Route exact path="/" element={<Posts displayName={user?.displayName} posts={posts} uid={user?.uid} profilePic={user?.photoURL} />} />
+        <Route path="/user" element={<User user={user} posts={posts} />} />
       </Routes>
 
     </>

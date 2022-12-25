@@ -1,4 +1,4 @@
-import { signOut, updateCurrentUser, updateProfile } from 'firebase/auth';
+import { signOut, updateProfile } from 'firebase/auth';
 import React, { useEffect, useState } from 'react'
 import { auth, db, storage } from '../../firebase';
 
@@ -11,24 +11,31 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 export default function User(props) {
 
   const [wait, setWait] = useState(false)
+  const [url, setUrl] = useState('')
 
   const posts = props.posts
 
   let mypost = []
 
   for (let i = 0; i < posts.length; ++i) {
-    if (posts[i].post.userName === props.user.userName) {
+    if (posts[i].post.userName === props.user.displayName) {
       mypost.push(posts[i])
     }
   }
 
+  useEffect(()=>{
+    setUrl(props.user?.photoURL)
+  },[props.user?.photoURL])
+
   const imageUploadHandler = (event) => {
 
-    let image = ''
+    let image = '';
 
     if (event.target.files[0]) {
       image = event.target.files[0]
     }
+
+    if(image == null) return;
 
     const imageRef = ref(storage, `profileImages/${image.name}`);
     const uploadTask = uploadBytesResumable(imageRef, image)
@@ -40,16 +47,17 @@ export default function User(props) {
         console.log(error)
       },
       () => {
-        console.log('fire')
         getDownloadURL(imageRef)
           .then((url) => {
-            // setURL(url)
+            setUrl(url)
             updateDoc(doc(db, "Users", (props.user.uid)), {
               profileImg: url
             })
             updateProfile(props.user, {
               photoURL: url
             })
+          }).catch((error)=>{
+            console.log(error)
           })
           setWait(false)
       }
@@ -61,9 +69,9 @@ export default function User(props) {
   return (
     <>
       <div className="Avatar">
-        {props.user?.photoURL ? <img src={props.user?.photoURL} className='image'/> : "Upload Profile Pic"}
+        {url ? <img src={url} className='image' alt='profile'/> : "Upload Profile Pic"}
         <label htmlFor='profilrImgPiker'>
-          {wait ? <div class="loader">Loading...</div> : <img src={camera} />}
+          {wait ? <div className="loader">Loading...</div> : <img src={camera} alt='camera_png'/>}
           <input id='profilrImgPiker' type='file' onChange={imageUploadHandler} disabled={wait}/>
         </label>
       </div>

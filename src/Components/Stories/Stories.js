@@ -16,8 +16,6 @@ export default function Stories() {
         })
     }, [])
 
-    console.log(users)
-
     return (
         <div className={classes.stories}>
             {
