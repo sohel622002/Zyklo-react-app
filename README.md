@@ -1,70 +1,45 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Zyklo React App 📲
 
-## Available Scripts
+A Social Media Web Application 
 
-In the project directory, you can run:
 
-### `npm start`
+![App Screenshot](https://github.com/sohel622002/my-project-screenshots/blob/master/Home%20Page.png?raw=true)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Introduction 🎇
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This Social Media Website is a vibrant online community where users can connect and interact with each other. It aims to provide a user-friendly and engaging platform for individuals to stay connected with friends and express themselves.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This platform offers a wide range of features designed to enhance the user experience and foster meaningful connections
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- SignUp / SignIn
+- Post Images with captions
+- Like / Comment On Others Posts
+- View Your Profile
+- Set Or Update Profile Pic
+- See Other User Who Signed In
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Video Demo 🎥
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![ezgif com-optimize](https://github.com/sohel622002/my-project-screenshots/assets/107305769/cffa5063-a2c7-40fa-8bf2-f201dd778ae9)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Features 🎁
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Sign Up
+![Sign Up](https://github.com/sohel622002/my-project-screenshots/blob/master/Sign%20Up.png?raw=true)
+### Sign In
+![Sign In](https://github.com/sohel622002/my-project-screenshots/blob/master/Sign%20In.png?raw=true)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Live On https://zyklo-react-app.web.app
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Used
+- React
+- React Router
+- Fireabse
