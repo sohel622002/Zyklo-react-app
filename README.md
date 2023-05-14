@@ -43,6 +43,9 @@ User can login with Email and password
 - user cant like ❤️, comment 💬 and delete 🗑️ posts if user in not signed In
 - user cant delete others posts
 - user can see other users who signed Up
+- user can post images and can add caption on them
+- user can see all their posts on Account section
+- user can upload profile pic on Account section
 
 ### Used
 - React
