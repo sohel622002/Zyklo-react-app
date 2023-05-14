@@ -33,13 +33,20 @@ This platform offers a wide range of features designed to enhance the user exper
 
 ### Sign Up
 ![Sign Up](https://github.com/sohel622002/my-project-screenshots/blob/master/Sign%20Up.png?raw=true)
+User can sign up with email address and can set UserName and Password
+
 ### Sign In
 ![Sign In](https://github.com/sohel622002/my-project-screenshots/blob/master/Sign%20In.png?raw=true)
+User can login with Email and password
 
-
-### Live On https://zyklo-react-app.web.app
+### The Key Features are...
+- user cant like ❤️, comment 💬 and delete 🗑️ posts if user in not signed In
+- user cant delete others posts
+- user can see other users who signed Up
 
 ### Used
 - React
 - React Router
 - Fireabse
+
+### Check the Live Website On https://zyklo-react-app.web.app
