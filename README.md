@@ -1,5 +1,4 @@
-
-# Zyklo React App 📲
+<h1 align="center">Zyklo React App 📲</h1>
 
 A Social Media Web Application 
 
