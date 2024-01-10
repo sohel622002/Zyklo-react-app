@@ -25,6 +25,7 @@ function Zyklo() {
   const [confirmpassword, setConfirmPassword] = useState('');
   const [user, setUser] = useState(null);
   const [error, setError] = useState('');
+  const [userdisplayName, setUserDisplayName] = useState('');
 
 
   useEffect(() => {
@@ -40,9 +41,9 @@ function Zyklo() {
   const signUp = async (event) => {
     event.preventDefault();
 
-    if (password !== confirmpassword) { return setError('password not matched') }
+    if (password !== confirmpassword) return setError('password not matched') 
 
-    if (!username) { return setError('UserName Required') }
+    if (!username) return setError('UserName Required') 
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCred) => {
@@ -50,17 +51,14 @@ function Zyklo() {
         updateProfile(userCred.user, {
           displayName: username
         });
+        setUserDisplayName(username)
         setUser(userCred.user);
         setSignUpOpen(false);
-        console.log(userCred)
         return setDoc(doc(db, "Users", userCred.user.uid), {
           profileImg: '',
           UserName: username
         });
-      }).then(() => {
-        window.location.reload();
-      })
-      .catch((error) => {
+      }).catch((error) => {
         setError(error.message);
       })
 
@@ -74,6 +72,7 @@ function Zyklo() {
         console.log('logedin')
         setUser(userCred.user);
         setSignInOpen(false);
+        setUserDisplayName(userCred.user.displayName)
       })
       .catch((error) => {
         setError(error.message)
@@ -84,15 +83,13 @@ function Zyklo() {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
-        //user is still loged in
         setUser(authUser)
+        setUserDisplayName(authUser.displayName)
       } else {
-        //user has loged out
         setUser(null);
       }
     })
     return () => {
-      //some cleanup function...
       unSubscribe();
     }
   }, []);
@@ -149,27 +146,43 @@ function Zyklo() {
           <h4>Zyklo</h4>
           <div className='btns'>
             {user ? (<>
-              {/* <button onClick={() => signOut(auth)} className={classes.navbtn}>Log Out</button> */}
               {
-                location.pathname === "/user" ? <button onClick={(e) => navigate('/')} className={classes.navbtn}>Home</button> :
+                location.pathname === "/user" ?
+                  <button
+                    onClick={(e) => navigate('/')}
+                    className={classes.navbtn}>Home
+                  </button> :
                   <>
-                    <button onClick={() => signOut(auth)} className={classes.navbtn}>Log Out</button>
-                    <button onClick={(e) => navigate('/user')} className={classes.navbtn}>My Account</button>
+                    <button onClick={() => {
+                      signOut(auth)
+                      setUserDisplayName('')
+                    }}
+                      className={classes.navbtn}>Log Out
+                    </button>
+                    <button
+                      onClick={(e) => navigate('/user')}
+                      className={classes.navbtn}>My Account
+                    </button>
                   </>
               }
             </>) : (<>
-              <button onClick={() => setSignUpOpen(true)} className={classes.navbtn}>Sign Up</button>
-              <button onClick={() => setSignInOpen(true)} className={classes.navbtn}>Log In</button>
+              <button
+                onClick={() => setSignUpOpen(true)}
+                className={classes.navbtn}>Sign Up
+              </button>
+              <button
+                onClick={() => setSignInOpen(true)}
+                className={classes.navbtn}>Log In
+              </button>
             </>)
             }
           </div>
         </div>
       </div>
-      <Routes>
-        <Route exact path="/" element={<Posts displayName={user?.displayName} posts={posts} uid={user?.uid} profilePic={user?.photoURL} />} />
-        <Route path="/user" element={<User user={user} posts={posts} />} />
-      </Routes>
-
+        <Routes>
+          <Route exact path="/" element={<Posts displayName={userdisplayName} posts={posts} uid={user?.uid} profilePic={user?.photoURL} />} />
+          <Route path="/user" element={<User user={user} posts={posts} />} />
+        </Routes>
     </>
   )
 };

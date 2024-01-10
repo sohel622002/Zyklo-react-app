@@ -1,15 +1,14 @@
-.container{
-    position: relative;
-}
-
 .postUploader {
-    position: sticky;
+    position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
     z-index: 10;
+    width: 100%;
     background: #dbcdcd44;
     backdrop-filter: saturate(180%) blur(10px);
+}
+
+.post_container{
+    margin-bottom: 125px;
 }
 
 .login_pera {

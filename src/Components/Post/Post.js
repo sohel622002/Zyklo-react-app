@@ -31,10 +31,7 @@ function Post(props) {
         }
     }, [props.postId]);
 
-    // console.log(props.likes)
-
     useEffect(() => {
-        // console.log('liked')
         setLikeDetail(props.likes)
     }, [props.likes]);
 
@@ -55,7 +52,7 @@ function Post(props) {
             .then((res) => {
                 setComment('')
             })
-            .catch(() => { })
+            .catch((error) => { console.error(error)})
 
     }
 
@@ -68,6 +65,10 @@ function Post(props) {
 
     function showDeleteBtnHandler() {
         setShowDeleteBtn(!showdeleteBtn)
+    }
+
+    if(showdeleteBtn == true) {
+        console.log('clicked')
     }
 
     // console.log(props.uid)

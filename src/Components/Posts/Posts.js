@@ -14,8 +14,12 @@ export default function Posts(props) {
     setPosts(props.posts)
   }, [props.posts])
 
+  useEffect(() => {
+    console.log(props.displayName)
+  }, [props.displayName])
+
   return (
-    <div className={classes.container}>
+    <>
       <Stories />
       <div className={classes.post_container}>
         {
@@ -34,16 +38,16 @@ export default function Posts(props) {
           )
         }
       </div>
-
+      
       <div className={classes.postUploader}>
         {
           props.displayName ? (
-            <ImageUpload username={props.displayName} profilePic={props.profilePic}/>
+            <ImageUpload username={props.displayName} profilePic={props.profilePic} />
           ) : (
             <h4 className={classes.login_pera}>Log In To Upload Posts</h4>
           )
         }
       </div>
-    </div>
+    </>
   )
 }
