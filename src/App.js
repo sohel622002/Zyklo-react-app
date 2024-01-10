@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      {/* temp commit */}
+      {/* temp commit for crony_dev*/}
         <Zyklo />
       </BrowserRouter>
     </div>
